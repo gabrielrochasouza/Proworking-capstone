@@ -134,18 +134,18 @@ export const OurTeam = styled.div`
     gap: 30px;
     @media (max-width: 460px) {
       margin: 30px auto 40px;
-      gap: 8px;
+      gap: 4px;
     }
     li {
       position: relative;
-      width: 290px;
-      height: 290px;
+      max-width: 290px;
+      height: auto;
       margin: 0px 0;
       background-color: var(--offwhite);
       border-radius: 30px;
       @media (max-width: 460px) {
-        width: 160px;
-        height: 160px;
+        flex-basis: 45%;
+        height: auto;
       }
       img {
         object-fit: cover;

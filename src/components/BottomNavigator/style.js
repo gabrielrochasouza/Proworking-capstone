@@ -5,6 +5,7 @@ export const NavigatorContainerDiv = styled.div`
   bottom: ${props=>props.upOrDown ? "-85px" : "0"};
   left: 0;
   width: 100%;
+  display: ${props=>props.location==="/chat" ?"none":"inherit"};
   background-color: var(--color-primary);
   color: var(--white);
   transition: 0.5s;

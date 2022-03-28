@@ -97,7 +97,7 @@ const BottomNavigator = () => {
   ];
 
   return (
-    <NavigatorContainerDiv upOrDown={upOrDown}>
+    <NavigatorContainerDiv location={location.pathname} upOrDown={upOrDown}>
       <nav>
         <ul>
           {authenticated

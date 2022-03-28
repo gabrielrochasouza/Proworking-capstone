@@ -103,7 +103,7 @@ const LandingPage = () => {
             allowFullScreen
             style={{cursor:'pointer'}}
             data-aos="fade-up"
-            frameborder="0"
+            frameBorder="0"
             >
             
           </iframe>

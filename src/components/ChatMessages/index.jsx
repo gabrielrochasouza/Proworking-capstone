@@ -20,7 +20,9 @@ const ChatMessages = ({
             {/* <div className="current-chat-user">{currentChatUser}</div> */}
             <button className="voltarChat" onClick={() =>{
                 setMessageIsOpen(false)
-                history.push('/dashboard/all-chats')
+                if(window.innerWidth>1000){
+                    history.push('/dashboard/all-chats')
+                }
             }}>{"Voltar"}</button>
 
             

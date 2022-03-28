@@ -68,6 +68,7 @@ export const DashboardContainer = styled.main`
         h3 {
           padding: 0 15px;
           font-size: 19px;
+          font-weight: 500;
         }
       }
     }

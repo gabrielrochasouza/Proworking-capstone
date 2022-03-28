@@ -18,6 +18,7 @@ export const FooterContainer = styled.footer`
   }
 
   .footer-contato {
+  position: relative;
     ul {
       list-style: none;
     }
@@ -53,7 +54,7 @@ export const FooterContainer = styled.footer`
       content: "";
       position: absolute;
       left: 10%;
-      bottom: 50px;
+      bottom: 75px;
       width: 30px;
       height: 30px;
     }

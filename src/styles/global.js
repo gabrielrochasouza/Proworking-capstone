@@ -77,7 +77,9 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-
+  html,body,#root{
+    //height: 100%;
+  }
   @keyframes fadeIn {
     from{
       opacity: 0;

@@ -45,12 +45,46 @@ export const Container = styled.div`
     overflow-y: auto;
     background: #f9f9f9;
     overflow-y: auto;
+    .btnVoltar{
+      display: none;
+    }
+    
     @media (max-width:1000px) {
-        max-width: 380px;
-        flex-basis: 100%;
+      max-width: 380px;
+      flex-basis: 100%;
     }
     @media (max-width:500px) {
+      position: relative;
       min-width: 100vw;
+      .btnVoltar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: var(--color-aux);
+        color: var(--white);
+        transition: 1s ease;
+        a{
+          color: white;
+          width: 100%;
+          text-align: center;
+        }
+        :hover{
+        transition: 1s ease;
+          background-color: var(--white);
+          color: var(--color-aux);
+        }
+        svg{
+          width: 60%;
+          height: 60%;
+        }
+      }
+
     }
     h1 {
       font-weight: bold;

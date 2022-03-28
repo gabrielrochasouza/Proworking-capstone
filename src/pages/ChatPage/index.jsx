@@ -27,6 +27,7 @@ const ChatPage = () => {
   //const { email, name } = user.user;
 
   const refreshChats = () => {
+
     const header = {
       "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
       "User-Name": `${user.user.email}`,
@@ -60,8 +61,11 @@ const ChatPage = () => {
   };
 
   useEffect(() => {
-    refreshChats();
-   // refreshMessages()
+    const refresh = setInterval(() => {
+      refreshChats();
+      refreshMessages(currentChat.id)
+    }, 3500);
+    return ()=>{clearInterval(refresh) }
   }, [currentChat]);
 
   const sendMessager = () => {

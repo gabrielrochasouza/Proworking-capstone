@@ -61,6 +61,9 @@ export const Container = styled.main`
             padding: 0 0px;
             max-width: 180px;
           }
+          @media (max-width: 468px) {
+            max-width: 160px;
+          }
         }
       }
       .arrow {

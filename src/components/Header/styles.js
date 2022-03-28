@@ -67,9 +67,9 @@ export const Nav = styled.nav`
 
   a {
     color: var(--white);
-    padding: 10px 15px;
+    padding: 10px 0px;
     background: var(--color-secondary);
-    width: 125px;
+    width: 100px;
     text-align: center;
     border-radius: 26px;
     text-transform: uppercase;
@@ -94,7 +94,7 @@ export const Nav = styled.nav`
   @media (min-width: 900px) {
     a {
       font-size: 14px;
-      width: 140px;
+      width: 120px;
     }
   }
 `;

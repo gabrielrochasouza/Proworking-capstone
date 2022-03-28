@@ -26,7 +26,7 @@ export const BoxChat = styled.div`
     }
   @media (max-width:1000px) {
 
-    min-height: 91vh;
+    min-height: 100vh;
   }
   > button {
     margin: 0 auto;
@@ -45,7 +45,7 @@ export const BoxChat = styled.div`
     font-size: 14px;
   }
   .voltarChat {
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 10px;
     border-radius: 30px;
@@ -121,7 +121,7 @@ export const BoxChat = styled.div`
     border: 0;
     padding: 25px;
     padding: 0px 25px;
-    margin: 53px 0 15px;
+    margin: 53px 0 32px;
     @media (max-width:1000px) {
       display: flex;
       flex-direction: column;
