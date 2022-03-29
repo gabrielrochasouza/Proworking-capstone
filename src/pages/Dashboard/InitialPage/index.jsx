@@ -15,7 +15,7 @@ const DashboardHomePage = () => {
 
   const profile =
     workers.find((worker) => Number(worker.user.id) === Number(profileId)) ||
-    JSON.parse(localStorage.getItem("@ProWorking:user")).user.id;
+    JSON.parse(localStorage.getItem("@ProWorking:user"));
 
   const { authenticated } = useAuthenticated();
 
@@ -25,7 +25,7 @@ const DashboardHomePage = () => {
 
   return (
     <DashboardContainer>
-      <h1>Seja bem vindo {profile.user.name}!! 😊 </h1>
+      <h1>Seja bem vindo {profile.user?.name}!! 😊 </h1>
       <h2>O que você deseja?</h2>
       <ul>
         <Link

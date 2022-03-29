@@ -80,7 +80,7 @@ const Dashboard = () => {
               <h3>
                 Olá 👋 {workerProfile.user?.name}, atualize ou insira as suas informações
               </h3>
-              <img src={!!user.user.img ? user.user.img : picture} alt="Foto de perfil" />
+              <img src={!!workerProfile.user.img ? workerProfile.user.img : picture} alt="Foto de perfil" />
             </div>
             <div className="profession">
               <p>Insira abaixo os serviços que voce realiza</p>
