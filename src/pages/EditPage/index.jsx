@@ -9,21 +9,22 @@ import { useWorkers } from "../../providers/workers/index.js";
 
 const EditPage = () => {
   const userInfo = JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
-  const { refreshWorkers } = useWorkers();
+  const { workers,refreshWorkers } = useWorkers();
+  const { handleUser } = useUser()
   const [newName,setNewName] = useState('')
   const [showModal,setShowModal] = useState(false)
-  const { workers } = useWorkers();
+
 
   const { accessToken } = userInfo;
 
-  const workerProfile = workers.find((worker) => worker.id === Number(userInfo.user.id))
+  const workerProfile = workers.find((worker) => worker.userId === Number(userInfo.user.id))
 
   
 
   const updateName = (nametext) => {
     proWorkingApi
       .patch(
-        `/users/${workerProfile.userId}`,
+        `/users/${userInfo.user.id}`,
         { name: nametext },
         {
           headers: {
@@ -32,20 +33,18 @@ const EditPage = () => {
         }
       )
       .then(() => {
-        refreshWorkers();
+        //refreshWorkers();
         toast("Nome de perfil atualizado!");
       })
       .catch((err) => console.log(err));
   };
 
-  console.log(workers)
-  console.log(workerProfile.userId)
-  console.log(userInfo.user.id)
+
 
   const updateImg = (link) => {
     proWorkingApi
       .patch(
-        `/users/${workerProfile.userId}`,
+        `/users/${userInfo.user.id}`,
         { img: link },
         {
           headers: {
@@ -54,7 +53,7 @@ const EditPage = () => {
         }
       )
       .then(() => {
-        refreshWorkers();
+        //refreshWorkers();
         toast("Imagem de perfil atualizada!");
       })
       .catch((err) => console.log(err));
@@ -73,6 +72,10 @@ const EditPage = () => {
       })
       .catch((err) => console.log(err));
   };
+  useEffect(()=>{
+      refreshWorkers()
+
+  },[])
 
   return (
     <Container>
@@ -80,7 +83,7 @@ const EditPage = () => {
       <div className="box-user">
         <figure>
           <img
-            src={!!userInfo.user.img ? userInfo.user.img : DefaultUserImg}
+            src={!!workerProfile.user.img ? workerProfile.user.img : DefaultUserImg}
             alt="Profile ilustration"
           />
           <label htmlFor="arquivo"><AiOutlineEdit /></label>
@@ -90,6 +93,7 @@ const EditPage = () => {
               formdata.append("image", e.target.files[0]);
               //updateImg('https://ca.slack-edge.com/TQZR39SET-U02BSSD4M1Q-73b0d8433e45-512')
               turnImageToUrl(formdata);
+              refreshWorkers()
             }}
             type={"file"}
             name="arquivo"
@@ -97,9 +101,9 @@ const EditPage = () => {
           />
         </figure>
         <h2>Nome de usuário:</h2>
-        {!!userInfo.user.name && (
+        {!!workerProfile.user.name && (
           <div className="user-info">
-            <p>{userInfo.user.name}</p>
+            <p>{workerProfile.user.name}</p>
             <span >
               <AiOutlineEdit onClick={()=>setShowModal(true)} />
             </span>
@@ -114,6 +118,7 @@ const EditPage = () => {
                 <button onClick={()=>{
                     updateName(newName)
                     setShowModal(false)
+                    refreshWorkers()
                 }}>Trocar o nome</button>
                 <span onClick={()=>setShowModal(false)}>Fechar</span>
             </div>
