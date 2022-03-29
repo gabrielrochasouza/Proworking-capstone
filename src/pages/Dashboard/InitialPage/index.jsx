@@ -30,11 +30,11 @@ const DashboardHomePage = () => {
           </li>
         </Link>
 
-        <Link to={"/dashboard/jobs-register"}>
+        <Link to={"/dashboard/edit-profile"}>
           <li>
-            <img src={CriarAnuncios} alt="Criar serviço" />
+            <img src={CriarAnuncios} alt="Editar Perfil" />
             <div>
-              <h3>Criar Anúncio para Contratar Alguém</h3>
+              <h3>Editar perfil</h3>
             </div>
           </li>
         </Link> 

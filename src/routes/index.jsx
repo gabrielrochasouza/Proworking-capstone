@@ -11,6 +11,7 @@ import SearchResults from "../pages/SearchResult";
 import DashboardHomePage from "../pages/Dashboard/InitialPage";
 import ChatPage from "../pages/ChatPage";
 import AllChatsPage from "../pages/AllChats";
+import EditPage from "../pages/EditPage";
 
 const Routes = () => {
   return (
@@ -35,6 +36,7 @@ const Routes = () => {
       <Route exact path="/dashboard" component={DashboardHomePage} />
 
       <Route exact path="/dashboard/service-register" component={Dashboard} />
+      <Route exact path="/dashboard/edit-profile" component={EditPage} />
 
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />

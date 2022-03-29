@@ -7,3 +7,6 @@ export const proWorkingApi = axios.create({
 export const chatApi = axios.create({
     baseURL: "https://api.chatengine.io",
 });
+export const imgurApi = axios.create({
+    baseURL:"https://api.imgur.com/"
+})
