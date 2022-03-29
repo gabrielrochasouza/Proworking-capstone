@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
-
+import {useWorkers} from '../../providers/workers'
 import chatImg from "../../assets/svg/chat.svg";
 
 const Chats = ({
@@ -27,9 +27,13 @@ const Chats = ({
   }, []);
 
   const [currentChatUser, setCurrentChatUser] = useState("");
+  
+  const { workers } = useWorkers();
 
-  const workerProfile =
-    JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
+  const idLocalStorage =
+    JSON.parse(localStorage.getItem("@ProWorking:user")).user.id || '';
+  const workerProfile = workers.find(worker=>Number(worker.user.id)===Number(idLocalStorage) )
+
 
   return (
     <Container>

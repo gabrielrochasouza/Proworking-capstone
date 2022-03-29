@@ -93,7 +93,7 @@ const EditPage = () => {
               formdata.append("image", e.target.files[0]);
               //updateImg('https://ca.slack-edge.com/TQZR39SET-U02BSSD4M1Q-73b0d8433e45-512')
               turnImageToUrl(formdata);
-              setTimeout(()=>refreshWorkers(),1000)
+              setTimeout(()=>refreshWorkers(),2000)
               
             }}
             type={"file"}
