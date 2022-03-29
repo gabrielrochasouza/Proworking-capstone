@@ -78,7 +78,7 @@ const Dashboard = () => {
           <div className="childContainer">
             <div className="profile">
               <h3>
-                Olá 👋 {user.user?.name}, atualize ou insira as suas informações
+                Olá 👋 {workerProfile.user?.name}, atualize ou insira as suas informações
               </h3>
               <img src={!!user.user.img ? user.user.img : picture} alt="Foto de perfil" />
             </div>

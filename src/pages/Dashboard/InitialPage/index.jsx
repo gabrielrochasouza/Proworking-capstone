@@ -6,9 +6,12 @@ import VerAnúncios from "../../../assets/svg/see-all-jobs.svg";
 import CriarAnuncios from "../../../assets/svg/create.svg";
 import { Redirect } from "react-router-dom";
 import { useAuthenticated } from "../../../providers/authenticated";
+import { useWorkers } from "../../../providers/workers";
 
 const DashboardHomePage = () => {
-  const profile = JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
+  const profileId = JSON.parse(localStorage.getItem("@ProWorking:user")).user.id || '';
+  const { workers } = useWorkers();
+  const profile = workers.find((worker) => Number(worker.user.id) === Number(profileId))
 
   const { authenticated } = useAuthenticated();
 
