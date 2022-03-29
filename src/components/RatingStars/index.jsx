@@ -12,7 +12,7 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
   const { refreshWorkers } = useWorkers();
   const {workers} = useWorkers() 
 
-  const workerProfile = workers.find(worker=>worker.userId===user.user.id)
+  const workerProfile = workers.find(worker=>worker.userId===user.user?.id)
 
   const handleRating = (rating) => {
     if (!user?.user.id) {
@@ -80,7 +80,14 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
   return (
     <Container>
       <Rating
-        onChange={(e) => handleRating(+e.target.value)}
+        onChange={(e) =>{
+          console.log(Object.keys(user))
+           if(Object.keys(user).length!== 0){
+             handleRating(+e.target.value)
+           } else{
+             toast.error('É necessário estar logado!')
+           }
+        }}
         name="rating-{workerId}"
         defaultValue={value}
         precision={0.5}

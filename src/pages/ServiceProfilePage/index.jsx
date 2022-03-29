@@ -31,10 +31,8 @@ const ServiceProfilePage = () => {
 
 
   const [workerProfile] = useState(
-    workers.find(
-      (worker) => worker.user.name === name && worker.id === Number(id)
-    )
-  );
+    workers.find((worker) => worker.user.name === name && worker.id === Number(id)) 
+  )
 
   const [userInfo] = useState(
     JSON.parse(localStorage.getItem("@ProWorking:user")) || {}
@@ -112,7 +110,7 @@ const ServiceProfilePage = () => {
         });
     }
 };
-
+console.log(workerProfile)
 
   return (
     <ServiceContainer>
