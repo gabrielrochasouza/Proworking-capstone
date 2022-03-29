@@ -12,17 +12,18 @@ const EditPage = () => {
   const { refreshWorkers } = useWorkers();
   const [newName,setNewName] = useState('')
   const [showModal,setShowModal] = useState(false)
-
+  const { workers } = useWorkers();
 
   const { accessToken } = userInfo;
 
+  const workerProfile = workers.find((worker) => worker.id === Number(userInfo.user.id))
 
-    console.log(accessToken)
+  
 
   const updateName = (nametext) => {
     proWorkingApi
       .patch(
-        `/users/${userInfo.user.id}`,
+        `/users/${workerProfile.userId}`,
         { name: nametext },
         {
           headers: {
@@ -37,11 +38,14 @@ const EditPage = () => {
       .catch((err) => console.log(err));
   };
 
+  console.log(workers)
+  console.log(workerProfile.userId)
+  console.log(userInfo.user.id)
 
   const updateImg = (link) => {
     proWorkingApi
       .patch(
-        `/users/${userInfo.user.id}`,
+        `/users/${workerProfile.userId}`,
         { img: link },
         {
           headers: {
@@ -65,6 +69,7 @@ const EditPage = () => {
       })
       .then((data) => {
         updateImg(data.data.data.link);
+        console.log(data.data.data.link)
       })
       .catch((err) => console.log(err));
   };

@@ -124,7 +124,7 @@ const ServiceProfilePage = () => {
           <RatingStars workerId={+id} value={averageRating || 0} />
         </span>
         <figure>
-          <img src={!!userInfo.user.img && userInfo.user.id===userId ? userInfo.user.img : DefaultUserImg} alt={name} />
+          <img src={!!workerProfile.user.img && workerProfile.user.id===userId ? workerProfile.user.img : DefaultUserImg} alt={name} />
         </figure>
       </div>
       <div className="profile-content">

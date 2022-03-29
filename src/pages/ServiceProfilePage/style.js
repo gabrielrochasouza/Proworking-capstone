@@ -189,7 +189,7 @@ export const ServiceContainer = styled.main`
       height: 50px;
       min-width: 130px;
       border-radius: 20px;
-      margin: 0 10px;
+      margin:  10px;
       padding:0 9px ;
       cursor: pointer;
       :hover {

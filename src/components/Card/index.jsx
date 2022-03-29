@@ -146,7 +146,7 @@ const Card = ({ nome, img, especialidades = [], locais = [], id }) => {
         <section data-aos='fade-in' id={id} onClick={(e) => openModal(e)}>
           <div className="titleAndImg">
             <h2 className="title">{nome}</h2>
-            <img src={!!userInfo.user.img && userInfo.user.id===userId ? userInfo.user.img : DefaultUserImg} alt="Imagem" />
+            <img src={!!workerProfile.user.img && workerProfile.user.id===userId ? workerProfile.user.img : DefaultUserImg} alt="Imagem" />
           </div>
 
           <ul className="occupation_areas">
