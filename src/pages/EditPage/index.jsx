@@ -18,8 +18,8 @@ const EditPage = () => {
             Authorization: "Client-ID a66ae9cfdf01190"
         }
     }).then(data => {
-        console.log(data)
-        setLinkCreated(data.data.link)
+        console.log(data.data.data.link)
+        setLinkCreated(data.data.data.link)
     }).catch(err=>console.log(err))
   }
 
