@@ -7,6 +7,7 @@ import whatsapp from "../../assets/Whatsapp.png";
 import email from "../../assets/Email.png";
 import DefaultUserImg from "../../assets/profile 1.png";
 import { Link } from "react-router-dom";
+import { useWorkers } from "../../providers/workers";
 
 const customStyles = {
   content: {
@@ -30,10 +31,20 @@ const Card = ({ nome, img, especialidades = [], locais = [], id }) => {
   
   const [open, setIsOpen] = useState(false);
 
+
+  const { workers } = useWorkers();
+
+  const workerProfile = workers.find(
+      (worker) => worker.id === Number(id)
+    );
+  const {userId} = workerProfile
+
   function openModal() {
     setIsOpen(true);
   }
-
+  const [userInfo] = useState(
+    JSON.parse(localStorage.getItem("@ProWorking:user")) || {}
+  );
   // function afterOpenModal() {
   //   // references are now sync'd and can be accessed.
   //   subtitle.style.color = "#f00";
@@ -135,7 +146,7 @@ const Card = ({ nome, img, especialidades = [], locais = [], id }) => {
         <section data-aos='fade-in' id={id} onClick={(e) => openModal(e)}>
           <div className="titleAndImg">
             <h2 className="title">{nome}</h2>
-            <img src={DefaultUserImg} alt="Imagem" />
+            <img src={!!userInfo.user.img && userInfo.user.id===userId ? userInfo.user.img : DefaultUserImg} alt="Imagem" />
           </div>
 
           <ul className="occupation_areas">

@@ -13,6 +13,11 @@ export const Container = styled.main`
       font-size: 15px;
     }
   }
+  img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
   input,
   button,
   select,

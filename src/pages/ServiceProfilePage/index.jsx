@@ -53,7 +53,7 @@ const ServiceProfilePage = () => {
       workerProfile.ratings.length
   );
 
-  const { occupation_areas, summary, whatsapp, user } = workerProfile;
+  const { occupation_areas, summary, whatsapp, user,userId } = workerProfile;
 
   const getApi = () => {
     proWorkingApi.get(`feedbacks?_expand=user&workerId=${+id}`).then((res) => {
@@ -124,7 +124,7 @@ const ServiceProfilePage = () => {
           <RatingStars workerId={+id} value={averageRating || 0} />
         </span>
         <figure>
-          <img src={DefaultUserImg} alt={name} />
+          <img src={!!userInfo.user.img && userInfo.user.id===userId ? userInfo.user.img : DefaultUserImg} alt={name} />
         </figure>
       </div>
       <div className="profile-content">
