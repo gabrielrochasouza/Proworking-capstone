@@ -95,6 +95,7 @@ export const Container = styled.div`
     }
   }
   section img {
+    object-fit: cover;
     width: 50px;
     height: 50px;
     border-radius: 100%;

@@ -81,7 +81,7 @@ const Card = ({ nome, img, especialidades = [], locais = [], id }) => {
           <ModalContainer id={id} onClick={(e) => openModal(e)}>
             <div className="headerModal">
               <h2>{nome}</h2>
-              <Imagem src={DefaultUserImg} alt="Imagem" />
+              <Imagem src={!!workerProfile.user.img && workerProfile.user.id===userId ? workerProfile.user.img : DefaultUserImg} alt="Imagem" />
             </div>
 
             <ul>
