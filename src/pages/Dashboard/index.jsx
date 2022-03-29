@@ -217,7 +217,7 @@ const Dashboard = () => {
                                 toast.success("Perfil Atualizado");
                                 window.scrollTo(0, 0);
                                 history.push(
-                                  `/services/${workerProfile.id}/${user.user?.name}`
+                                  `/services/${workerProfile.id}/${workerProfile.user?.name}`
                                 );
                               }, 750);
                             } else {
