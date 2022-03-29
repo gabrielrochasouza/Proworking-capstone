@@ -8,15 +8,20 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
   const user = JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
   //const token = localStorage.getItem("@ProWorking:token");
   const { accessToken } = user;
-
+  
   const { refreshWorkers } = useWorkers();
+  const {workers} = useWorkers() 
+
+  const workerProfile = workers.find(worker=>worker.userId===user.user.id)
 
   const handleRating = (rating) => {
-    if (!user.user.id) {
-      return toast.error("Faça login para avaliar");
+    if (!user?.user.id) {
+      toast.error("Faça login para avaliar");
+      return 
     }
     if (user.user.id===workerId) {
-      return toast.error("Você não pode se auto avaliar");
+      toast.error("Você não pode se auto avaliar");
+      return 
     }
 
     proWorkingApi
@@ -27,11 +32,22 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
         },
       })
       .then((res) => {
-        if (!res.data.length) {
+        //console.log('userId: ',user.user.id)
+
+        console.log(res.data)
+        console.log(workers)
+        //console.log(workerProfile)
+        console.log('id: ',workerProfile.id )
+        console.log('userId: ',user.user.id )
+        console.log('workerId: ',workerId )
+        //console.log(accessToken)
+      
+
+        if (!res.data.some(elem=>elem.userId===user.user.id)) {
           proWorkingApi
             .post(
               "/ratings",
-              { stars: rating, workerId, userId: user.user.id },
+              { stars: rating, workerId, userId: user.user.id ,id:workerProfile.id },
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
@@ -41,11 +57,11 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
             .then(() =>{
               toast.success('Avaliação feita')
               refreshWorkers()
-            });
+            })//.catch((err)=>console.log(err));
         } else {
           proWorkingApi
             .patch(
-              `/ratings/${res.data[0].id}`,
+              `/ratings/${workerProfile.id}`,
               { stars: rating },
               {
                 headers: {
@@ -56,7 +72,7 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
             .then(() =>{
               toast.success('Revaliação feita')
               refreshWorkers()
-            });
+            }).catch(()=>toast.error('É necessário login'));
         }
       });
   };

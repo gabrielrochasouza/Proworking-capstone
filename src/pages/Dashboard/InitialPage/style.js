@@ -40,7 +40,7 @@ export const DashboardContainer = styled.main`
       transition: all 0.25s ease-in-out;
       border-radius:10%;
       color: #000;
-      background-color: #5562c6;
+      
       font-weight: bold;
       font-family: var(--font-text);
       display: flex;
@@ -62,7 +62,7 @@ export const DashboardContainer = styled.main`
         object-position: left;
         object-fit: cover;
         //border: 1px solid #eee;
-        background-color: #5562c6;
+        background: linear-gradient(90deg, #5562c6,blue);
         border-radius: 10% ;
       }
       div {
@@ -90,7 +90,7 @@ export const DashboardContainer = styled.main`
           top: 18px;
           width: 80px;
           height: 3px;
-          background-color: blue;
+          background: linear-gradient(90deg, #5562c6,blue);
           content: '';
           @media (max-width:500px) {
             height: 1px;
