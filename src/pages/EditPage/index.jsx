@@ -93,7 +93,8 @@ const EditPage = () => {
               formdata.append("image", e.target.files[0]);
               //updateImg('https://ca.slack-edge.com/TQZR39SET-U02BSSD4M1Q-73b0d8433e45-512')
               turnImageToUrl(formdata);
-              refreshWorkers()
+              setTimeout(()=>refreshWorkers(),1000)
+              
             }}
             type={"file"}
             name="arquivo"
@@ -118,7 +119,7 @@ const EditPage = () => {
                 <button onClick={()=>{
                     updateName(newName)
                     setShowModal(false)
-                    refreshWorkers()
+                    setTimeout(()=>refreshWorkers(),1000)
                 }}>Trocar o nome</button>
                 <span onClick={()=>setShowModal(false)}>Fechar</span>
             </div>
