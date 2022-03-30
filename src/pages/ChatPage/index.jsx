@@ -43,7 +43,6 @@ const ChatPage = () => {
       .catch((err) => {
         toast("Você precisa terminar seu cadastro");
         history.push("/");
-        console.log(err);
       });
   };
 
@@ -57,7 +56,6 @@ const ChatPage = () => {
     chatApi
       .get(`/chats/${chatId}/messages`, { headers: header })
       .then(({ data }) => setMessages([...data]))
-      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -82,7 +80,6 @@ const ChatPage = () => {
       })
       .then(() => refreshMessages(currentChat.id))
       .then(() => setInputMessage(""))
-      .catch((err) => console.log(err));
       refreshChats();
   };
 

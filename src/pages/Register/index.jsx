@@ -32,7 +32,6 @@ const Register = () => {
                 "PRIVATE-KEY": privateKey,
             },
         })
-        .catch((err) => console.log(err));
 };
 
 

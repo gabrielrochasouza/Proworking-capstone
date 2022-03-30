@@ -4,16 +4,13 @@ import { useWorkers } from "../../providers/workers";
 import { proWorkingApi } from "../../services/api";
 import { Container } from "./styles";
 
-const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
+const RatingStars = ({ workerId,workerUserId, value = 0, isEditable = false }) => {
   const user = JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
-  //const token = localStorage.getItem("@ProWorking:token");
   const { accessToken } = user;
   
   const { refreshWorkers } = useWorkers();
-  const {workers} = useWorkers() 
 
-  const workerProfile = workers.find(worker=>worker.userId===user.user?.id)
-
+  
   const handleRating = (rating) => {
     if (!user?.user.id) {
       toast.error("Faça login para avaliar");
@@ -23,31 +20,20 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
       toast.error("Você não pode se auto avaliar");
       return 
     }
-
+    
     proWorkingApi
       .get("/ratings", {
         params: {
           workerId,
-          userId: user.id,
+          userId: user.user.id,
         },
       })
       .then((res) => {
-        //console.log('userId: ',user.user.id)
-
-        console.log(res.data)
-        console.log(workers)
-        //console.log(workerProfile)
-        console.log('id: ',workerProfile.id )
-        console.log('userId: ',user.user.id )
-        console.log('workerId: ',workerId )
-        //console.log(accessToken)
-      
-
-        if (!res.data.some(elem=>elem.userId===user.user.id)) {
+        if (!res.data.length && workerUserId!==user.user.id) {
           proWorkingApi
             .post(
               "/ratings",
-              { stars: rating, workerId, userId: user.user.id ,id:workerProfile.id },
+              { stars: rating, workerId, userId: user.user.id  },
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
@@ -57,11 +43,15 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
             .then(() =>{
               toast.success('Avaliação feita')
               refreshWorkers()
-            })//.catch((err)=>console.log(err));
+            })
+        }else if( workerUserId===user.user.id){
+          toast.error('Não se pode auto avaliar')
         } else {
-          proWorkingApi
+          if(res.data[0].userId!==res.data[0].workerId){
+
+            proWorkingApi
             .patch(
-              `/ratings/${workerProfile.id}`,
+              `/ratings/${+res.data[0].id}`,
               { stars: rating },
               {
                 headers: {
@@ -70,18 +60,22 @@ const RatingStars = ({ workerId, value = 0, isEditable = false }) => {
               }
             )
             .then(() =>{
-              toast.success('Revaliação feita')
-              refreshWorkers()
-            }).catch(()=>toast.error('É necessário login'));
+              toast.success('Avaliação feita')
+            })
+            .then(()=>refreshWorkers())
+            .catch(()=>toast.error('É necessário login'));
+          }else{
+            toast.error('Você não pode se auto avaliar')
+          }
         }
-      });
-  };
+        });
+      };
 
   return (
     <Container>
       <Rating
         onChange={(e) =>{
-          console.log(Object.keys(user))
+        
            if(Object.keys(user).length!== 0){
              handleRating(+e.target.value)
            } else{

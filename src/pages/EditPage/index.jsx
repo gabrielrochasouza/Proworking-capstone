@@ -4,13 +4,11 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { imgurApi, proWorkingApi } from "../../services/api.js";
-import { useUser } from "../../providers/user/index.js";
 import { useWorkers } from "../../providers/workers/index.js";
 
 const EditPage = () => {
   const userInfo = JSON.parse(localStorage.getItem("@ProWorking:user")) || {};
   const { workers,refreshWorkers } = useWorkers();
-  const { handleUser } = useUser()
   const [newName,setNewName] = useState('')
   const [showModal,setShowModal] = useState(false)
 
@@ -36,7 +34,6 @@ const EditPage = () => {
         //refreshWorkers();
         toast("Nome de perfil atualizado!");
       })
-      .catch((err) => console.log(err));
   };
 
 
@@ -56,7 +53,6 @@ const EditPage = () => {
         //refreshWorkers();
         toast("Imagem de perfil atualizada!");
       })
-      .catch((err) => console.log(err));
   };
 
   const turnImageToUrl = (dataform) => {
@@ -68,14 +64,12 @@ const EditPage = () => {
       })
       .then((data) => {
         updateImg(data.data.data.link);
-        console.log(data.data.data.link)
       })
-      .catch((err) => console.log(err));
   };
   useEffect(()=>{
       refreshWorkers()
 
-  },[])
+  })
 
   return (
     <Container>
