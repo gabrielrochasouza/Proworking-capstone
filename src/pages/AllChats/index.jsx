@@ -34,17 +34,9 @@ const AllChatsPage = () => {
     JSON.parse(localStorage.getItem("@ProWorking:user")) || {}
   );
 
-
-
   const userName = userInfo.user.name
 
-  // const [workerProfile] = useState(
-  //   workers.find(
-  //     (worker) => worker.user.name === name && worker.id === Number(id)
-  //   )
-  // );
-
-  const initChat = (name, email) => {
+  const initChat = (name, email,chatFriendId) => {
     const header = {
       "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
       "User-Name": `${userInfo.user.email}`,
@@ -53,13 +45,15 @@ const AllChatsPage = () => {
     };
     const data = {
       usernames: [userInfo.user.email, email],
-      title: `${userInfo.user.name}/${name}`,
+      title: `${userInfo.user.name}/${name}/${userInfo.user.id}/${chatFriendId}`,
       is_direct_chat: false,
     };
     if (authenticated) {
       chatApi
         .put("/chats/", data, { headers: header })
-        .then(() => history.push("/chat"));
+        .then((res) =>{ 
+          history.push("/chat")
+        });
     } else {
       toast("Faça login para usar o chat!", {
         toastId: "toastfyInfo",
@@ -76,9 +70,9 @@ const AllChatsPage = () => {
       <h1 data-aos="fade-right">Escolha quem você deseja enviar mensagem:</h1>
       <ul>
         {workers.filter(worker=>worker.is_active && worker.user.name!==userName ).map((worker, index) => (
-          <li data-aos="fade-up" key={index} onClick={()=>{initChat(worker.user.name, worker.user.email )}}>
+          <li data-aos="fade-up" key={index} onClick={()=>{initChat(worker.user.name, worker.user.email,worker.user.id )}}>
               <figure>
-                  <img src={DefaultUserImg} alt="profile pic"/>
+                  <img src={worker.user?.img ? worker.user.img : DefaultUserImg} alt="profile pic"/>
               </figure>
               <div className="info">
                   <h2>{worker.user.name}</h2>

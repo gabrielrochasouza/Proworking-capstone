@@ -41,6 +41,13 @@ export const Container = styled.main`
       }
       figure {
         flex-basis: 5%;
+        border-radius: 50%;
+        img{
+          border-radius: 50%;
+          height: 50px;
+          width: 50px;
+          object-fit: cover;
+        }
       }
       .info {
         flex-basis: 85%;

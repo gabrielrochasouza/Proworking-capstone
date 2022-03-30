@@ -40,6 +40,13 @@ export const ContainerChat = styled.li`
   }
   figure{
     flex-basis:20% ;
+      border-radius: 50%;
+    img{
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
   }
   p,span {
     font-size: 9px;
