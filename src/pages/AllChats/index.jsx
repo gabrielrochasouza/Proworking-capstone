@@ -36,9 +36,11 @@ const AllChatsPage = () => {
 
   const userName = userInfo.user.name
 
+  const projectId = 'f408c6cc-b6de-420f-904a-623c1b520ae0'
+
   const initChat = (name, email,chatFriendId) => {
     const header = {
-      "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
+      "Project-ID": projectId,
       "User-Name": `${userInfo.user.email}`,
       "User-Secret": "proworking2022",
       "Content-Type": "application/json",

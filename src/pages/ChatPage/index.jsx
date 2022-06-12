@@ -24,12 +24,13 @@ const ChatPage = () => {
 
   const history = useHistory();
 
+  const projectId = 'f408c6cc-b6de-420f-904a-623c1b520ae0'
   //const { email, name } = user.user;
 
   const refreshChats = () => {
 
     const header = {
-      "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
+      "Project-ID": projectId,
       "User-Name": `${user.user.email}`,
       "User-Secret": "proworking2022",
       "Content-Type": "application/json",
@@ -48,7 +49,7 @@ const ChatPage = () => {
 
   const refreshMessages = (chatId) => {
     const header = {
-      "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
+      "Project-ID": projectId,
       "User-Name": `${user.user.email}`,
       "User-Secret": "proworking2022",
       "Content-Type": "application/json",
@@ -68,7 +69,7 @@ const ChatPage = () => {
 
   const sendMessager = () => {
     const header = {
-      "Project-ID": "e17e9017-bc37-4905-87cd-3c21a240adb9",
+      "Project-ID": projectId,
       "User-Name": `${user.user.email}`,
       "User-Secret": "proworking2022",
       "Content-Type": "application/json",

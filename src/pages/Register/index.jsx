@@ -20,7 +20,7 @@ const Register = () => {
   const { handleUser } = useUser();
 
   const createChatUser = (data) => {
-    const privateKey = "904cdef3-09bc-4891-80b2-6b3de0b6b1f8";
+    const privateKey = "58b09f85-9502-454c-93bb-351e5a9a40db";
     const dataChat = {
         username: data.email,
         secret: "proworking2022",
